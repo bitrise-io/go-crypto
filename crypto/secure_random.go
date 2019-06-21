@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"io"
+	mathrand "math/rand"
 
 	"github.com/pkg/errors"
 )
@@ -25,4 +26,15 @@ func SecureRandomHex(length int64) (string, error) {
 		return "", errors.WithStack(err)
 	}
 	return string(string(hex.EncodeToString(randomBytes))), nil
+}
+
+// SecureRandomHash ...
+func SecureRandomHash(n int) string {
+	letterBytes := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+	b := make([]byte, n)
+	for i := range b {
+		b[i] = letterBytes[mathrand.Intn(len(letterBytes))]
+	}
+	return string(b)
 }
