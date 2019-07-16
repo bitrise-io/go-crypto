@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"io"
 	mathrand "math/rand"
+	"time"
 
 	"github.com/pkg/errors"
 )
@@ -30,6 +31,8 @@ func SecureRandomHex(length int64) (string, error) {
 
 // SecureRandomHash ...
 func SecureRandomHash(n int) string {
+	mathrand.Seed(time.Now().UTC().UnixNano())
+
 	letterBytes := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 	b := make([]byte, n)
