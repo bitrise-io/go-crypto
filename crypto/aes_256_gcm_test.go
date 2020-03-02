@@ -3,7 +3,7 @@ package crypto_test
 import (
 	"testing"
 
-	"github.com/bitrise-team/go-crypto/crypto"
+	"github.com/bitrise-io/go-crypto/crypto"
 	"github.com/stretchr/testify/require"
 )
 
