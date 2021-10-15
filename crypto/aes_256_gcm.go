@@ -32,7 +32,7 @@ func AES256GCMCipherBytesInput(data []byte, iv []byte, encryptKey []byte) ([]byt
 
 // AES256GCMDecipher ...
 func AES256GCMDecipher(encryptedText, iv []byte, encryptKey string) (string, error) {
-	plaintext, err := AES256GCMDecipherByteOutput(encryptedText, iv, encryptKey)
+	plaintext, err := AES256GCMDecipherByteOutput(encryptedText, iv, []byte(encryptKey))
 	if err != nil {
 		return "", errors.WithStack(err)
 	}
@@ -41,8 +41,8 @@ func AES256GCMDecipher(encryptedText, iv []byte, encryptKey string) (string, err
 }
 
 // AES256GCMDecipherByteOutput ...
-func AES256GCMDecipherByteOutput(encryptedText, iv []byte, encryptKey string) ([]byte, error) {
-	block, err := aes.NewCipher([]byte(encryptKey))
+func AES256GCMDecipherByteOutput(encryptedText, iv []byte, encryptKey []byte) ([]byte, error) {
+	block, err := aes.NewCipher(encryptKey)
 	if err != nil {
 		return []byte{}, errors.WithStack(err)
 	}
