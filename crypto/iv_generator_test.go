@@ -15,3 +15,12 @@ func Test_GenerateIV(t *testing.T) {
 		require.Equal(t, int(12), len(generatedIV))
 	}
 }
+
+func Test_GenerateIV256(t *testing.T) {
+	t.Log("test")
+	{
+		generatedIV, err := crypto.GenerateIV256()
+		require.NoError(t, err)
+		require.Equal(t, int(32), len(generatedIV))
+	}
+}
